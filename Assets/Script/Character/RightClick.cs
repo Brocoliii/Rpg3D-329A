@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem.DualShock.LowLevel;
 
 public class RightClick : MonoBehaviour
 {
     public static RightClick instance;
-    
+
     private Camera cam;
     private LayerMask layerMask;
 
@@ -16,9 +17,9 @@ public class RightClick : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       instance = this;
-       cam = Camera.main;
-       layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
+        instance = this;
+        cam = Camera.main;
+        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
     }
 
     // Update is called once per frame
@@ -29,12 +30,13 @@ public class RightClick : MonoBehaviour
             TryCammand(Input.mousePosition);
         }
     }
-    private void CommandtoWalk(RaycastHit hit,Character c)
+    private void CommandtoWalk(RaycastHit hit, Character c)
     {
         if (c != null)
         {
             c.WalkToPosition(hit.point);
         }
+        CreateVFX(hit.point, VFXManager.Instance.Marker);
     }
 
     private void TryCammand(Vector2 screenPos)
@@ -46,9 +48,30 @@ public class RightClick : MonoBehaviour
             switch (hit.collider.tag)
             {
                 case "Ground":
-                    CommandtoWalk(hit,leftClick.CurChar); 
+                    CommandtoWalk(hit, leftClick.CurChar);
+                    break;
+                case "Enemy":
+                    CommandtoAtk(hit, leftClick.CurChar);
                     break;
             }
         }
+    }
+
+    private void CreateVFX(Vector3 pos, GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null) return;
+        Instantiate(vfxPrefab, pos + new Vector3(0f, 0.1f, 0f), Quaternion.identity);
+    }
+
+    private void CommandtoAtk(RaycastHit hit, Character c)
+    {
+        if (c == null)
+            return;
+        Character target = hit.collider.GetComponent<Character>();
+        Debug.Log("Attack: " + target);
+        if (target != null)
+            c.ToAttackCharacter(target);
+
+
     }
 }
