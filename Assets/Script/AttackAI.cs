@@ -21,13 +21,5 @@ public class AttackAI : MonoBehaviour
         myChar = GetComponent<Character>();
         if (myChar != null) InvokeRepeating("FindAndAttackEnemt", 0f, 1f);
     }
-    public void ToggleAI(bool isOn)
-    {
-        foreach (Character member in PartyManager.instance.MemberChars)
-        {
-            AttackAI ai = member.gameObject.GetComponent<AttackAI>();
-            if (ai != null )
-                ai.enabled = isOn;
-        }
-    }
+   
 }

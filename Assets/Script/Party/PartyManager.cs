@@ -16,4 +16,5 @@ public class PartyManager : MonoBehaviour
     {
         instance = this;
     }
+    
 }
