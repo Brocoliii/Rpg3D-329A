@@ -27,6 +27,8 @@ public class CharAnimation : MonoBehaviour
                 c.Anim.SetBool("isIdle", true);
                 break;
             case CharState.Walk:
+            case CharState.WalkToEnemy:
+  case CharState.WalkToMagicCast:
                 c.Anim.SetBool("isWalk", true);
                 break;
                 

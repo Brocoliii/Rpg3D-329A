@@ -4,6 +4,11 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] private RectTransform selectionBox;
     [SerializeField] private Toggle togglePasueUnpause;
+    [SerializeField]
+    private Toggle[] toggleMagic;
+    public Toggle[] ToggleMagic { get { return toggleMagic; } }
+    [SerializeField]
+    private int curToggleMagicID = -1;
     public RectTransform SelectionBox { get { return selectionBox; } }
     public static UiManager instance;
 
@@ -41,4 +46,24 @@ public class UiManager : MonoBehaviour
     {
         Time.timeScale = isOn ? 0 : 1;
     }
+    public void ShowMagicToggles()
+    {
+        if (PartyManager.instance.SelectChars.Count <= 0) return;
+        Character hero = PartyManager.instance.SelectChars[0];
+        for (int i = 0; i< hero.MagicSkills.Count; i++)
+        {
+            toggleMagic[i].interactable = true;
+            toggleMagic[i].isOn = false;
+            toggleMagic[i].GetComponentInChildren<Text>().text = hero.MagicSkills[i].Name;
+        }
+    }
+    public void SelectMagicSkill(int i)
+    {
+        curToggleMagicID = i;
+        PartyManager.instance.HeroSelectMagicSkill(i);
+    }
+    public void IsOncurToggleMagic(bool flag)
+    {
+        toggleMagic[curToggleMagicID].isOn = flag;
+    }    
 }
