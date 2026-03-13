@@ -37,6 +37,8 @@ public abstract class Character : MonoBehaviour
     protected int atkDamage = 3;
     [SerializeField]
     protected float findingRange = 20f;
+    //[SerializeField]
+    //protected Vector3 MagicPoint;
     public float FindingRange { get { return findingRange; } }
     [SerializeField]
     protected List<Magic> magicSkills = new List<Magic>();
@@ -197,7 +199,8 @@ public abstract class Character : MonoBehaviour
     }
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
-        if (vfxManager != null) vfxManager.ShootMagic(curMagicCast.ShootID, transform.position, curCharTarget.transform.position, curMagicCast.ShootTime);
+        
+        if (vfxManager != null) vfxManager.ShootMagic(curMagicCast.ShootID, transform.position, curCharTarget.transform.position + new Vector3 (0,1.2f,0), curMagicCast.ShootTime);
         yield return new WaitForSeconds(curMagicCast.ShootTime);
         MagicCastLogic(curMagicCast);
         isMagicMode = false;

@@ -22,10 +22,13 @@ public class PartyManager : MonoBehaviour
         foreach (Character character in memberChars)
         {
             character.charInit(VFXManager.Instance , UiManager.instance);
+           character.MagicSkills.Add(new Magic(0, "Fire ball", 10f, 50, 3f, 1f, 0, 1));
+           character.MagicSkills.Add(new Magic(0, "Lighing", 10f, 50, 3f, 1f, 0, 1));
         }
         SelectSingHero(0);
         memberChars[0].MagicSkills.Add(new Magic(0, "power Glow", 10f, 50, 3f, 1f, 2, 2));
         memberChars[1].MagicSkills.Add(new Magic(0, "Fire ball", 10f, 50, 3f, 1f, 2, 2));
+        memberChars[2].MagicSkills.Add(new Magic(0, "Lighing", 10f, 50, 3f, 1f, 2, 2));
         UiManager.instance.ShowMagicToggles();
     }
      void Update()
