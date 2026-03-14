@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SwordA_1
   m_EditorClassIdentifier: Assembly-CSharp::itemData
   id: 1
-  itemName: 
-  type: 0
+  itemName: Sword A
+  type: 2
   icon: {fileID: 0}
-  power: 0
+  power: 20

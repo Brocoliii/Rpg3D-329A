@@ -1471,6 +1471,7 @@ GameObject:
   - component: {fileID: 290376436}
   - component: {fileID: 290376439}
   - component: {fileID: 290376440}
+  - component: {fileID: 290376441}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1538,6 +1539,9 @@ MonoBehaviour:
   - {fileID: 1473356317183098, guid: 16b154ffbfe6c5841b0a46456345a632, type: 3}
   - {fileID: 1489431029902184, guid: ebdb29271f499b541bff7cfefa7ee694, type: 3}
   - {fileID: 1239156983776194, guid: e9f282dfa0c78e84c9259e7315bf1722, type: 3}
+  magicData:
+  - {fileID: 11400000, guid: 9a439e382830982469771b0b11c7b220, type: 2}
+  - {fileID: 11400000, guid: 4fb0686b654b3614791a745e147781af, type: 2}
 --- !u!114 &290376440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,6 +1558,23 @@ MonoBehaviour:
   memberChars:
   - {fileID: 1809589957}
   - {fileID: 2137352948}
+--- !u!114 &290376441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290376435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f9e6e2a7c82e04b839a6d6621160a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  itemPrefabs: []
+  itemData:
+  - {fileID: 11400000, guid: 0620252d2a5bb2a4889a031b1aaa4826, type: 2}
+  - {fileID: 11400000, guid: cf93ac57236c91d47b0d771c73ed2dd6, type: 2}
+  - {fileID: 11400000, guid: bc734dd2a547a13409f9818f4c9a731d, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6088,6 +6109,10 @@ MonoBehaviour:
   - {fileID: 1817212839}
   - {fileID: 335608278}
   curToggleMagicID: -1
+  blackImage: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+  itemUIprefab: {fileID: 0}
+  slots: []
 --- !u!114 &1416516101
 MonoBehaviour:
   m_ObjectHideFlags: 0
