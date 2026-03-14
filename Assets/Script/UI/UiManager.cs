@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private int curToggleMagicID = -1;
     public RectTransform SelectionBox { get { return selectionBox; } }
+
+    [SerializeField]
+    private GameObject blackImage;
+    [SerializeField]
+    private GameObject inventoryPanel;
+    [SerializeField]
+    private GameObject itemUIprefab;
+    [SerializeField]
+    private GameObject[] slots;
+
     public static UiManager instance;
 
     void Awake()
@@ -55,6 +66,7 @@ public class UiManager : MonoBehaviour
             toggleMagic[i].interactable = true;
             toggleMagic[i].isOn = false;
             toggleMagic[i].GetComponentInChildren<Text>().text = hero.MagicSkills[i].Name;
+            toggleMagic[i].targetGraphic.GetComponent<Image>().sprite = hero.MagicSkills[i].Icon;
         }
     }
     public void SelectMagicSkill(int i)
@@ -66,4 +78,49 @@ public class UiManager : MonoBehaviour
     {
         toggleMagic[curToggleMagicID].isOn = flag;
     }    
+
+    public void ClearInventory()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].transform.childCount > 0)
+            {
+                Transform child = slots[i].transform.GetChild(0);
+                Destroy(child.gameObject);
+            }
+        
+        }  
+            
+    }
+    public void ShowInventory()
+    {
+        if (PartyManager.instance.SelectChars.Count <= 0) return;
+
+        Character hero = PartyManager.instance.SelectChars[0];
+
+        for (int i = 0; i < hero.InventoryItens.Length; i++ )
+        {
+            if (hero.InventoryItens[i] != null)
+         {
+                GameObject itemObj = Instantiate(itemUIprefab, slots[i].transform);
+                itemObj.GetComponent<Image>().sprite = hero.InventoryItens [i].Icon;
+
+        }
+        }    
+    }
+    public void ToggleInventoryPanel()
+    {
+        if (!inventoryPanel.activeInHierarchy)
+        {
+            inventoryPanel.SetActive(true);
+            blackImage.SetActive(true);
+            ShowInventory();
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+            blackImage.SetActive(false);    
+            ShowInventory();
+        }
+    }
 }

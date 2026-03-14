@@ -28,16 +28,20 @@ public class Magic
     [SerializeField]
     private int shootID;
     public int ShootID { get { return shootID; } }
+    [SerializeField]
+    private Sprite icon;
+    public Sprite Icon { get { return icon; } }
 
-    public Magic (int id , string name, float range, int power, float loadTime, float shootTime, int loadID, int shootID)
+    public Magic (MagicData data)
     {
-        this.id = id;
-        this.name = name;
-        this.range = range;
-        this.power = power;
-        this.loadTime = loadTime;
-        this.shootTime = shootTime;
-        this.loadID = loadID;
-        this.shootID = shootID;
+        id = data.id ;
+        icon = data.icon ;
+        range = data.range ;
+        name = data.name ;
+        power = data.power;
+        loadTime = data.loadTime ;
+        shootTime = data.shootTime ;
+        loadID = data.loadId;
+        shootID = data.shootId;
     }
 }
