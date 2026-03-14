@@ -1539,9 +1539,12 @@ MonoBehaviour:
   - {fileID: 1473356317183098, guid: 16b154ffbfe6c5841b0a46456345a632, type: 3}
   - {fileID: 1489431029902184, guid: ebdb29271f499b541bff7cfefa7ee694, type: 3}
   - {fileID: 1239156983776194, guid: e9f282dfa0c78e84c9259e7315bf1722, type: 3}
+  - {fileID: 1352952055292810, guid: da48d608e1401e749b08658f5d59abc6, type: 3}
   magicData:
   - {fileID: 11400000, guid: 9a439e382830982469771b0b11c7b220, type: 2}
   - {fileID: 11400000, guid: 4fb0686b654b3614791a745e147781af, type: 2}
+  - {fileID: 11400000, guid: 7a6507c3c877a58499ba562f3e24af2b, type: 2}
+  - {fileID: 11400000, guid: 110c855a8986320418d53f75d1e4a6ca, type: 2}
 --- !u!114 &290376440
 MonoBehaviour:
   m_ObjectHideFlags: 0

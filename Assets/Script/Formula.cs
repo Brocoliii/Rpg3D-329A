@@ -7,7 +7,7 @@ public static class Formula
         LayerMask charLayer = LayerMask.GetMask("Character");
         Character closestTarget = null;
         float closestDistance = 0f;
-        RaycastHit[] hits = Physics.SphereCastAll(me.transform.position, me.FindingRange, Vector3.up, charLayer);
+        RaycastHit[] hits = Physics.SphereCastAll(me.transform.position, me.FindingRange, Vector3.up,0f, charLayer);
 
         for (int i = 0; i < hits.Length; i++)
         {

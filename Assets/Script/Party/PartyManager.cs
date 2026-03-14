@@ -27,7 +27,11 @@ public class PartyManager : MonoBehaviour
         }
         SelectSingHero(0);
         memberChars[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[0]));
-        memberChars[1].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[1]));
+        memberChars[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[1]));
+
+
+        memberChars[1].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[2]));
+        memberChars[1].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[3]));
         //memberChars[2].MagicSkills.Add(new Magic(0, "Lighing", 10f, 50, 3f, 1f, 2, 2));
 
         InventoryManager.Instance.Additem(memberChars[0], 0);
@@ -44,14 +48,14 @@ public class PartyManager : MonoBehaviour
     }
      void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (selectChars.Count > 0)
-            {
-                selectChars[0].IsMagicMode = true;
-                selectChars[0].CurMagicCast = selectChars[0].MagicSkills[0];
-            }
-        }   
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    if (selectChars.Count > 0)
+        //    {
+        //        selectChars[0].IsMagicMode = true;
+        //        selectChars[0].CurMagicCast = selectChars[0].MagicSkills[0];
+        //    }
+        //}   
     }
     public void SelectSingHero (int i)
     {
