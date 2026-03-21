@@ -135,7 +135,7 @@ public class UiManager : MonoBehaviour
         {
             inventoryPanel.SetActive(false);
             blackImage.SetActive(false);    
-            ShowInventory();
+            ClearInventory();
         }
     }
 }

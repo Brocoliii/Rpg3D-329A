@@ -12,7 +12,7 @@ public class Item
     public int ID { get { return id; } }
     [SerializeField]
     private string itemName;
-    private string ItemName { get { return itemName; } }
+    public string ItemName { get { return itemName; } }
     [SerializeField]
     private ItemType type; 
     public ItemType Type { get { return type; } }

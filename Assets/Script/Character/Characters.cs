@@ -240,7 +240,7 @@ public abstract class Character : MonoBehaviour
         string myTag = gameObject.tag;
         if ((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
             return true;
-        if ((myTag == "Enemy" && myTag == "Hero") || targetTag == "Player")
+        if ((myTag == "Enemy" && ( targetTag == "Hero") || targetTag == "Player"))
             return true;
         return false;
     }

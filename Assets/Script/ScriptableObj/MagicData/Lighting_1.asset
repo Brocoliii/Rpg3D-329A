@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1c7d86f95742304b8bf499d2e8f637f, type: 3}
-  m_Name: Lignt_1
+  m_Name: Lighting_1
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 0
-  magicName: Light
+  magicName: lighting
   icon: {fileID: 0}
   range: 0
   power: 0
