@@ -23,6 +23,10 @@ public class UiManager : MonoBehaviour
 
     public static UiManager instance;
 
+     void Start()
+    {
+        InitSlots();
+    }
     void Awake()
     {
         instance = this;
@@ -92,18 +96,29 @@ public class UiManager : MonoBehaviour
         }  
             
     }
+    private void InitSlots()
+    {
+        for (int i = 0; i < InventoryManager.MAXSLOT; i++)
+        {
+            slots[i].GetComponent<InventorySlot>().ID = i;
+        }
+    }
     public void ShowInventory()
     {
         if (PartyManager.instance.SelectChars.Count <= 0) return;
 
         Character hero = PartyManager.instance.SelectChars[0];
 
-        for (int i = 0; i < hero.InventoryItens.Length; i++ )
+        for (int i = 0; i < InventoryManager.MAXSLOT; i++ )
         {
             if (hero.InventoryItens[i] != null)
          {
                 GameObject itemObj = Instantiate(itemUIprefab, slots[i].transform);
-                itemObj.GetComponent<Image>().sprite = hero.InventoryItens [i].Icon;
+                ItemDrag itemDrag = itemObj.GetComponent<ItemDrag>();
+
+                itemDrag.Item = hero.InventoryItens[i];
+                itemDrag.IconParent = slots[i].transform;
+                itemDrag.Image.sprite = hero.InventoryItens[i].Icon;
 
         }
         }    

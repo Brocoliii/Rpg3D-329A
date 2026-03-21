@@ -68,6 +68,7 @@ public abstract class Character : MonoBehaviour
 
     protected VFXManager vfxManager;
     protected UiManager uiManager;
+    protected InventoryManager invManager;
 
 
     [SerializeField]
@@ -189,6 +190,7 @@ public abstract class Character : MonoBehaviour
         navAgent.isStopped = true;
         SetState(CharState.Die);
         anim.SetTrigger("Die");
+        invManager.SpawnDropInventory(inventoryitems, transform.position);
         StartCoroutine(DestroyObj());
     }
     public void ReceiveDamage(int damage)
@@ -242,12 +244,13 @@ public abstract class Character : MonoBehaviour
             return true;
         return false;
     }
-    public void charInit(VFXManager vfxm , UiManager uiM)
+    public void charInit(VFXManager vfxm , UiManager uiM, InventoryManager invM)
     {
         vfxManager = vfxm;
         uiManager = uiM;
+        invManager = invM;
 
-        inventoryitems = new Item[16];
+        inventoryitems = new Item[InventoryManager.MAXSLOT];
     }
     private void MagicCast(Magic curMagicCast)
     {

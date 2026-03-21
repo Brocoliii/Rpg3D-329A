@@ -9,7 +9,7 @@ public class Item
 {
     [SerializeField]
     private int id;
-    private int ID { get { return id; } }
+    public int ID { get { return id; } }
     [SerializeField]
     private string itemName;
     private string ItemName { get { return itemName; } }

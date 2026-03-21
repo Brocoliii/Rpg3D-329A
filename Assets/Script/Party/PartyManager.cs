@@ -22,7 +22,7 @@ public class PartyManager : MonoBehaviour
     {
         foreach (Character character in memberChars)
         {
-            character.charInit(VFXManager.Instance , UiManager.instance);
+            character.charInit(VFXManager.Instance , UiManager.instance,InventoryManager.Instance);
            
         }
         SelectSingHero(0);
