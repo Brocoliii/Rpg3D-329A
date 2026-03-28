@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public enum CharState
 {
@@ -23,6 +24,9 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int curHP = 10;
     public int HP { get { return curHP; } }
+    [SerializeField]
+    protected int maxHP = 100;
+    public int MaxHP { get { return maxHP; } }
     [SerializeField]
     protected Character curCharTarget;
     public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } }
@@ -62,6 +66,15 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected Item shield;
     public Item Shield {get { return shield; }  set { shield = value; } }
+
+    [SerializeField]
+    protected Transform shieldHand;
+
+    [SerializeField]
+    protected GameObject shieldObj;
+
+    [SerializeField]
+    protected int defensePower = 0;
 
 
 
@@ -197,8 +210,10 @@ public abstract class Character : MonoBehaviour
     {
         if (curHP <= 0 || state == CharState.Die) return;
 
-        curHP -= damage;
-        if (curHP <= 0)
+        int damageAfter = damage - defensePower;
+        if (damageAfter < 0) damageAfter = 0;
+        curHP -= damageAfter;
+         if (curHP <= 0)
         {
             curHP = 0;
             Die();
@@ -278,4 +293,27 @@ public abstract class Character : MonoBehaviour
         }
 
     }
+    public void Recover(int n)
+    {
+        curHP += n;
+        if (curHP > maxHP) curHP = maxHP;
+    }
+    public void EquipShield(Item item)
+    {
+        shieldObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], shieldHand);
+        shieldObj.transform.localPosition = new Vector3(-8.5f, -4f, 3f);
+
+        defensePower += item.Power;
+        shield = item;
+    }
+    public void UnEquipShield()
+    {
+        if(shield != null)
+        {
+            defensePower -= shield.Power;
+            shield = null;
+            Destroy(shieldObj);
+        }
+    }
+
 }

@@ -20,6 +20,14 @@ public class UiManager : MonoBehaviour
     private GameObject itemUIprefab;
     [SerializeField]
     private GameObject[] slots;
+    [SerializeField]
+    private GameObject grayImage;
+    [SerializeField]
+    private GameObject itemDialog;
+    [SerializeField]
+    private ItemDrag curItemDrag;
+    [SerializeField]
+    private int curSlotId;
 
     public static UiManager instance;
 
@@ -116,6 +124,8 @@ public class UiManager : MonoBehaviour
                 GameObject itemObj = Instantiate(itemUIprefab, slots[i].transform);
                 ItemDrag itemDrag = itemObj.GetComponent<ItemDrag>();
 
+                itemDrag.UiManager = this;
+
                 itemDrag.Item = hero.InventoryItens[i];
                 itemDrag.IconParent = slots[i].transform;
                 itemDrag.Image.sprite = hero.InventoryItens[i].Icon;
@@ -137,5 +147,25 @@ public class UiManager : MonoBehaviour
             blackImage.SetActive(false);    
             ClearInventory();
         }
+    }
+    public void SetCurItemInUse(ItemDrag itenDrag , int index)
+    {
+        curItemDrag = itenDrag;
+        curSlotId = index;
+    }
+    public void ToggleItemDialog(bool flag)
+    {
+        grayImage.SetActive(flag);
+        itemDialog.SetActive(flag);
+    }
+    public void DeleteItemIcon()
+    {
+        Destroy(curItemDrag.gameObject);
+    }
+    public void ClickDrinkConsumable()
+    {
+        InventoryManager.Instance.DrinkConsumableItem(curItemDrag.Item, curSlotId);
+        DeleteItemIcon();
+        ToggleItemDialog(false);
     }
 }

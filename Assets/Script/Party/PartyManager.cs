@@ -40,6 +40,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.Instance.Additem(memberChars[1], 0);
         InventoryManager.Instance.Additem(memberChars[1], 1);
         InventoryManager.Instance.Additem(memberChars[1], 2);
+        InventoryManager.Instance.Additem(memberChars[1], 3);
 
 
 
